@@ -4,6 +4,15 @@ Rails.application.routes.draw do
   get("/users", { :controller => "users", :action => "index" })
   get("/", { :controller => "users", :action => "index" })
 
+  get("/users/:path_id", { :controller => "users", :action => "show" })
+  get("/users/:path_id/liked_photos", { :controller => "users", :action => "liked" })
+  get("/users/:path_id/feed", { :controller => "users", :action => "feed" })
+  get("/users/:path_id/discover", { :controller => "users", :action => "discover" })
+
+
+
+  
+
   # CREATE
   post("/insert_comment", { :controller => "comments", :action => "create" })
           
@@ -62,6 +71,8 @@ Rails.application.routes.draw do
   # Routes for the Followrequest resource:
 
   # CREATE
+  post("/homeinsert_followrequest", { :controller => "users", :action => "followcreate" })
+  post("/showinsert_followrequest", { :controller => "users", :action => "showfollowcreate" })
   post("/insert_followrequest", { :controller => "followrequests", :action => "create" })
           
   # READ
