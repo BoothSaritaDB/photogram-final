@@ -12,7 +12,7 @@ task({ :sample_data => :environment}) do
   Photo.delete_all
   Like.delete_all
   Comment.delete_all
-  FollowRequest.delete_all
+  Followrequest.delete_all
 
   users = [
     {id: 81, username: "galen", email: "galen@example.com", private: false, likes_count: 97, comments_count: 98, created_at: "2015-01-19 09:24:34", updated_at: "2019-10-08 10:25:00"},
@@ -865,7 +865,7 @@ task({ :sample_data => :environment}) do
     {id: 2401, sender_id: 99, recipient_id: 120, status: "pending", created_at: "2018-09-01 00:01:41", updated_at: "2019-10-08 10:25:00"},
     {id: 2402, sender_id: 104, recipient_id: 120, status: "accepted", created_at: "2018-10-24 17:24:38", updated_at: "2019-10-08 10:25:00"}
   ]
-  FollowRequest.insert_all!(follow_requests)
+  Followrequest.insert_all!(follow_requests)
   comments = [
     {id: 2730, photo_id: 628, body: "There was never a genius without a tincture of madness.", author_id: 96, created_at: "2019-03-19 03:56:09", updated_at: "2019-10-08 10:25:00"},
     {id: 2731, photo_id: 628, body: "It's not what happens to you, but how you react to it that matters.", author_id: 115, created_at: "2018-07-20 04:14:14", updated_at: "2019-10-08 10:25:00"},

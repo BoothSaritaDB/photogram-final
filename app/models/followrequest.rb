@@ -13,5 +13,7 @@ class Followrequest < ApplicationRecord
 
   belongs_to(:recipient, { :required => false, :class_name => "User", :foreign_key => "recipient_id", :counter_cache => true })
   belongs_to(:sender, { :required => false, :class_name => "User", :foreign_key => "sender_id" })
+
+  validates(:recipient_id, { :uniqueness => { :scope => [:sender_id] } })
   
 end

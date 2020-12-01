@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_230745) do
+ActiveRecord::Schema.define(version: 2020_11_30_234352) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "photo_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_230745) do
     t.integer "followrequests_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "private"
   end
 
 end

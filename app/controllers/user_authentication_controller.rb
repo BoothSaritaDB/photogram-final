@@ -42,10 +42,11 @@ class UserAuthenticationController < ApplicationController
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
     @user.username = params.fetch("query_username")
-    @user.photos_count = params.fetch("query_photos_count")
-    @user.comments_count = params.fetch("query_comments_count")
-    @user.likes_count = params.fetch("query_likes_count")
-    @user.followrequests_count = params.fetch("query_followrequests_count")
+    @user.photos_count = 0
+    @user.comments_count = 0
+    @user.likes_count = 0
+    @user.followrequests_count = 0
+    @user.private = params.fetch("query_private")
 
     save_status = @user.save
 

@@ -22,18 +22,59 @@
 
 
       <td>
-        <%=a_user.name%>
+        <%=a_user.username%>
       </td>
 
       <td>
+          <%if a_user.private == false%>
+          No
+          <%else%>
           Yes
+          <%end%>
       </td>
 
       <td>
+          <%if @current_user == nil%>
+          
+          <%else%>
+          
+
+          
+
+          
+      
+
+          <form action="/insert_followrequest" method="post">
+                <div>
+                  <input type="hidden" id="sender_id_box" name="query_sender_id" value="1">
+                </div>
+
+                <div>
+
+                  <input type="hidden" id="recipient_id_box" name="query_recipient_id" value="<%=a_user.id%>">
+                </div>
+
+                <div>
+                  <input type="hidden" id="status_box" name="query_status" value="pending">
+                </div>
+
+                <button>
+                  Follow
+                </button>
+          </form>
+
+
+
+
+
+
+
+
+          <%end%>
       </td>
 
       <td>
-        <a href="/users/<%=a_user.name%>">Show details</a>
+        <a href="/users/<%=a_user.username%>">Show details</a>
       </td>
     </tr>
 
