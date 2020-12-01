@@ -6,6 +6,7 @@
 #  comments_count       :integer
 #  email                :string
 #  followrequests_count :integer
+#  followsent_count     :integer
 #  likes_count          :integer
 #  password_digest      :string
 #  photos_count         :integer

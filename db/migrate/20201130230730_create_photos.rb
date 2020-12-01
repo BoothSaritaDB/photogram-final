@@ -4,7 +4,7 @@ class CreatePhotos < ActiveRecord::Migration[6.0]
       t.string :image
       t.text :caption
       t.integer :owner_id
-      t.integer :comments_count
+      t.integer :comments_count, :default => 0
       t.integer :likes_count
 
       t.timestamps

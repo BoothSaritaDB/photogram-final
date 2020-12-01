@@ -11,8 +11,12 @@ Rails.application.routes.draw do
 
 
   get("/usersdelete_followrequest/:path_id", { :controller => "users", :action => "destroy" })
+  
+  post("/photo_insert_like", { :controller => "photos", :action => "likecreate" })
+  get("/photo_delete_like/:path_id", { :controller => "photos", :action => "likedestroy" })
 
 
+  post("/show_modify_user", { :controller => "users", :action => "showupdate" })
 
   # CREATE
   post("/insert_comment", { :controller => "comments", :action => "create" })

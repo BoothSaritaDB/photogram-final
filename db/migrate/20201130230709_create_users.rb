@@ -4,10 +4,10 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :email
       t.string :password_digest
       t.string :username
-      t.integer :photos_count
-      t.integer :comments_count
-      t.integer :likes_count
-      t.integer :followrequests_count
+      t.integer :photos_count, :default => 0
+      t.integer :comments_count, :default => 0
+      t.integer :likes_count, :default => 0
+      t.integer :followrequests_count, :default => 0
 
       t.timestamps
     end

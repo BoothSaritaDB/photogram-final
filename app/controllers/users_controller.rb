@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+skip_before_action(:force_user_sign_in, { :only => [:index] })
 
   def index
 
@@ -85,7 +86,31 @@ class UsersController < ApplicationController
 
 
 
-#-------------------------
+#------------------------- USER UPDATE FOR SHOW
+
+def showupdate
+    @user = @current_user
+    @user.email = @current_user.email
+    @user.password = @current_user.password
+    @user.password_confirmation = @current_user
+    @user.username = params.fetch("query_username")
+    @user.photos_count = @current_user.photos_count
+    @user.comments_count = @current_user.comments_count
+    @user.likes_count = @current_user.likes_count
+    @user.followrequests_count = @current_user.followrequests_count
+    @user.private = params.fetch("query_private")
+    
+    #if @user.valid?
+     # @user.save
+
+      redirect_to("/users/", { :notice => "User account updated successfully."})
+    #else
+    #  render({ :template => "user_authentication/edit_profile_with_errors.html.erb" , :alert => @user.errors.full_messages.to_sentence })
+   # end
+  end
+
+  #------------------------- END OF SHOW
+
 def liked
     the_name = params.fetch("path_id")
 

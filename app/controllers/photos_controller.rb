@@ -7,6 +7,10 @@ class PhotosController < ApplicationController
     render({ :template => "photos/index.html.erb" })
   end
 
+
+
+  # ---------------SHOW SECTION
+
   def show
     the_id = params.fetch("path_id")
 
@@ -16,6 +20,35 @@ class PhotosController < ApplicationController
 
     render({ :template => "photos/show.html.erb" })
   end
+
+
+def likecreate
+    the_like = Like.new
+    the_like.fan_id = @current_user.id
+    the_like.photo_id = params.fetch("query_photo_id")
+
+    if the_like.valid?
+      the_like.save
+      redirect_to("/photos/#{the_like.photo_id}", { :notice => "Liked created successfully."} )
+    else
+      redirect_to("/photos/#{the_like.photo_id}", { :alert => "Like failed to create successfully." })
+    end
+  end
+
+
+  def likedestroy
+    the_id = params.fetch("path_id")
+    the_like = Like.where({ :id => the_id }).at(0)
+
+    the_like.destroy
+
+    redirect_to("/photos/#{the_like.photo_id}", { :notice => "Like deleted successfully."} )
+  end
+
+
+
+  # ---------------END SHOW SECTION
+
 
   def create
     the_photo = Photo.new

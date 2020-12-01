@@ -37,9 +37,28 @@
   </dd>
 
   <dt>Following</dt>
-  <dd>9</dd>
+  <%= @the_user.followsent_count%>
 
 </dl>
+
+<% if @the_user.id == @current_user.id%>
+<div>
+    <form action="/show_modify_user" method="post">
+      <label for="username_box">Username</label>
+      <input id="username_box" name="query_username" value="<%=@current_user.username%>">
+
+      <label for="private_box">Private</label>
+      <input type="checkbox" id="private_box" name="query_private">
+
+      <button>
+        Update user
+      </button>
+    </form>
+</div>
+
+<%else%>
+
+<%end%>
 
 <nav>
   <ul>

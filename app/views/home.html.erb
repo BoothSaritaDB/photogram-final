@@ -34,7 +34,9 @@
 
         <%else%>
         
-          
+          <% the_followrequest = @current_user.followsent.where({:recipient_id => a_user.id}).at(0) %>
+          <% if the_followrequest == nil %>
+
             <form action="/homeinsert_followrequest" method="post">
               <div>
                 <input type="hidden" id="sender_id_box" name="query_sender_id" value="@current_user.id">
@@ -50,6 +52,18 @@
               </button>
             </form>
           
+          <% elsif the_followrequest.status == "accepted" %>
+              
+              <a href="">Unfollow</a>
+
+          <% elsif the_followrequest.status == "pending" %>
+          
+            Request sent. <a href="">Cancel</a>
+
+          <%else%>
+  
+        <%end%>
+
         <%end%>
       </td>
 
