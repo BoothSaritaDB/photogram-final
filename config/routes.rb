@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   get("/users/:path_id/discover", { :controller => "users", :action => "discover" })
 
 
+  get("/usersdelete_followrequest/:path_id", { :controller => "users", :action => "destroy" })
 
-  
+
 
   # CREATE
   post("/insert_comment", { :controller => "comments", :action => "create" })

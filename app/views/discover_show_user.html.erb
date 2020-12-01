@@ -1,4 +1,4 @@
-    <h1><%= @the_user.username%></h1>
+<h1><%= @the_user.username%></h1>
 
 <dl>
   <dt>Private</dt>
@@ -7,32 +7,6 @@
   <dt>Followers</dt>
   <dd>
     <%= @the_user.followrequests_count%>
-
-
-      <div>
-
-
-<% the_followrequest = @current_user.followsent.where({:recipient_id => @the_user.id}).at(0) %>
-<% if the_followrequest == nil %>
-
-          <form action="/showinsert_followrequest" method="post">
-            <input type="hidden" name="query_recipient_id" value="<%=@the_user.id%>%">
-
-            <button>
-              Follow
-            </button>
-          </form>
-
-
-<%else%>
-
-<a href="/usersdelete_followrequest/<%=the_followrequest.id%>">Unfollow</a>
-
-<%end%>
-
-
-
-    </div>
 
   </dd>
 
@@ -58,7 +32,7 @@
   </ul>
 </nav>
 
-<h2>Own photos (<%= @the_user.photos_count%>)</h2>
+<h2>Discover (<%= @the_user.photos_count%>)</h2>
 
 <table border="1">
   <tr>

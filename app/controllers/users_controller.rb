@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     render({ :template => "home.html.erb"})
   end
 
-
+# --------------- follow create for the index page ---------------
   def followcreate
       the_followrequest = Followrequest.new
       the_followrequest.sender_id = @current_user.id
@@ -25,6 +25,10 @@ class UsersController < ApplicationController
       end
     end
 
+
+
+
+# --------------- SHOW SECTION ---------------
 
     def show
     the_name = params.fetch("path_id")
@@ -41,24 +45,43 @@ class UsersController < ApplicationController
     render({ :template => "show_user.html.erb" })
   end
 
+  # --------------- follow create for the show page ---------------
   
   def showfollowcreate
-      #the_name = params.fetch("query_recipient_id")
-      #matching_recipient = User.where({ :username => the_name })
-      #the_recipient = matching_recipient.at(0)
-
+      
       the_followrequest = Followrequest.new
       the_followrequest.sender_id = @current_user.id
       the_followrequest.recipient_id = params.fetch("query_recipient_id")
       the_followrequest.status = "pending"
 
+
+      var1 = User.where({ :id => the_followrequest.recipient_id }).at(0)
+      recipient_name = var1.username
+
+
       if the_followrequest.valid?
         the_followrequest.save
-        redirect_to("/users/", { :notice => "Followrequest created successfully." })
+        redirect_to("/users/"+recipient_name, { :notice => "Followrequest created successfully." })
       else
-        redirect_to("/users/", { :notice => "Followrequest failed to create successfully." })
+        redirect_to("/users/"+recipient_name, { :notice => "Followrequest failed to create successfully." })
       end
     end
+
+
+  def destroy
+    the_id = params.fetch("path_id")
+    the_followrequest = Followrequest.where({ :id => the_id }).at(0)
+
+     
+    var1 = User.where({ :id => the_followrequest.recipient_id }).at(0)
+    recipient_name = var1.username
+
+    the_followrequest.destroy
+
+
+    redirect_to("/users/"+recipient_name, { :notice => "Followrequest deleted successfully."} )
+  end
+
 
 
 
@@ -90,7 +113,7 @@ def liked
 
     #@the_photo = matching_photos.at(0)
 
-    render({ :template => "show_user.html.erb" })
+    render({ :template => "feed_show_user.html.erb" })
   end
 
   def discover
@@ -105,7 +128,7 @@ def liked
 
     #@the_photo = matching_photos.at(0)
 
-    render({ :template => "show_user.html.erb" })
+    render({ :template => "discover_show_user.html.erb" })
   end
 
 
